@@ -1,0 +1,14 @@
+input {
+  &.form-control {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #859aaf;
+    border-radius: 0;
+    &:focus {
+      background-color: transparent;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+}
