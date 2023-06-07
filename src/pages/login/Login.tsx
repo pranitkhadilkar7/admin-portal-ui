@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form"
 import { LoginForm } from "./login-type"
 import { validateSimpleEmail } from "../../constants/regExPattern"
 import { ErrorText } from "../../components/common/ErrorText"
+import { useDocumentTitle } from "../../hooks/useDocumentTitle"
 
 export function Login() {
+  useDocumentTitle("Login")
   const {
     register,
     handleSubmit,

@@ -9,5 +9,5 @@ export type LoginForm = {
 }
 
 export type LoginState = {
-  accessToken: string
+  accessToken: string | null
 }

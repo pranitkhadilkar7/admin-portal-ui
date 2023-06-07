@@ -4,9 +4,14 @@ import { post } from "../../http/httpMethods"
 import { loginUrl } from "../../constants/apiUrl"
 import { RootState } from "../../store/store"
 import { AxiosResponse } from "axios"
+import {
+  clearLocalStorage,
+  getAccessTokenFromLocal,
+  setAccessTokenAtLocal,
+} from "../../utility/storageUtil"
 
 const initialState: LoginState = {
-  accessToken: "",
+  accessToken: getAccessTokenFromLocal(),
 }
 
 export const login = createAsyncThunk<AxiosResponse<LoginResponse>, LoginForm>(
@@ -26,13 +31,20 @@ export const login = createAsyncThunk<AxiosResponse<LoginResponse>, LoginForm>(
 const slice = createSlice({
   name: "login",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.accessToken = ""
+      clearLocalStorage()
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       state.accessToken = action.payload.data.accessToken
+      setAccessTokenAtLocal(action.payload.data.accessToken)
     })
   },
 })
 
+export const { logout } = slice.actions
 export const loginSelector = (state: RootState) => state.login
 export const loginReducer = slice.reducer
