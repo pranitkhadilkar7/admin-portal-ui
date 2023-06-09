@@ -3,6 +3,7 @@ import { Login } from "../pages/login/Login"
 import { RequireAuth } from "./RequireAuth"
 import { Home } from "../pages/home/Home"
 import { AuthNotRequired } from "./AuthNotRequired"
+import { PageLayout } from "../components/common/PageLayout"
 
 export function PageRoutes() {
   return (
@@ -20,7 +21,7 @@ export function PageRoutes() {
         path="/home"
         element={
           <RequireAuth>
-            <Home />
+            <PageLayout children={<Home />} />
           </RequireAuth>
         }
       />
