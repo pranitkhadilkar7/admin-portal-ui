@@ -4,6 +4,7 @@ import { RequireAuth } from "./RequireAuth"
 import { Home } from "../pages/home/Home"
 import { AuthNotRequired } from "./AuthNotRequired"
 import { PageLayout } from "../components/common/PageLayout"
+import { Users } from "../pages/users/Users"
 
 export function PageRoutes() {
   return (
@@ -22,6 +23,14 @@ export function PageRoutes() {
         element={
           <RequireAuth>
             <PageLayout children={<Home />} />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/users"
+        element={
+          <RequireAuth>
+            <PageLayout children={<Users />} />
           </RequireAuth>
         }
       />
