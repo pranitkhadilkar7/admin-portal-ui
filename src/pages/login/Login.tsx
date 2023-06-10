@@ -23,7 +23,7 @@ export function Login() {
   }
 
   return (
-    <Row className="px-3">
+    <Row className="m-0 p-0">
       <Col sm="4" className="mx-auto mt-4">
         <h2 className="mb-3">Welcome To EMTECH Admin Portal</h2>
         <p>Sign In to manage your account</p>
