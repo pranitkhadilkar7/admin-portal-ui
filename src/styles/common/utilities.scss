@@ -33,5 +33,11 @@ code {
 }
 
 .page-container {
-  margin-top: 4rem;
+  .p-top {
+    padding-top: 4rem;
+  }
+}
+
+thead {
+  background-color: #2a3745;
 }

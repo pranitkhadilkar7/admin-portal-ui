@@ -12,8 +12,11 @@ export function PageLayout({ children }: Props) {
       <NavbarAtTop />
       <div className="h-100 overflow-hidden d-flex">
         <LeftNavigation />
-        <div className="h-100 w-100 overflow-auto p-3 page-container">
-          {children}
+        <div className="h-100 w-100 overflow-hidden d-flex flex-column page-container">
+          <div className="p-top"></div>
+          <div className="h-100 w-100 overflow-auto d-flex flex-column p-3">
+            {children}
+          </div>
         </div>
       </div>
     </>
