@@ -15,4 +15,12 @@
   }
   background-color: #1e252d;
   width: 11rem;
+  .nav-item {
+    cursor: pointer;
+    &:hover,
+    &.active {
+      color: $primary;
+      font-weight: 800;
+    }
+  }
 }

@@ -1,40 +1,39 @@
 import { Route, Routes, Navigate } from "react-router-dom"
-import { Login } from "../pages/login/Login"
 import { RequireAuth } from "./RequireAuth"
-import { Home } from "../pages/home/Home"
 import { AuthNotRequired } from "./AuthNotRequired"
 import { PageLayout } from "../components/common/PageLayout"
-import { Users } from "../pages/users/Users"
+import { PATHS, PRIVATE_ROUTES, PUBLIC_ROUTES } from "./paths"
 
 export function PageRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/home" replace />} />
+      <Route path="/" element={<Navigate to={PATHS.home} replace />} />
+      {PUBLIC_ROUTES.map((publicRoutes) => (
+        <Route
+          key={publicRoutes.path}
+          path={publicRoutes.path}
+          element={
+            <AuthNotRequired>
+              <publicRoutes.component />
+            </AuthNotRequired>
+          }
+        />
+      ))}
+      {PRIVATE_ROUTES.map((privateRoutes) => (
+        <Route
+          key={privateRoutes.path}
+          path={privateRoutes.path}
+          element={
+            <RequireAuth>
+              <PageLayout children={<privateRoutes.component />} />
+            </RequireAuth>
+          }
+        />
+      ))}
       <Route
-        path="/login"
-        element={
-          <AuthNotRequired>
-            <Login />
-          </AuthNotRequired>
-        }
+        path="*"
+        element={<PageLayout children={<h1>Page Not Found</h1>} />}
       />
-      <Route
-        path="/home"
-        element={
-          <RequireAuth>
-            <PageLayout children={<Home />} />
-          </RequireAuth>
-        }
-      />
-      <Route
-        path="/users"
-        element={
-          <RequireAuth>
-            <PageLayout children={<Users />} />
-          </RequireAuth>
-        }
-      />
-      <Route path="*" element={<h1>Page Not Found</h1>} />
     </Routes>
   )
 }
