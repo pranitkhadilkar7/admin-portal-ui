@@ -1,10 +1,13 @@
 import { apiService } from "../../store/api-service"
-import { GetUsersParams, User } from "./users-type"
+import { GetUsersParams, GetUsersResponseForTable } from "./users-type"
 
 const usersApi = apiService.injectEndpoints({
   endpoints: (build) => ({
-    getUsers: build.query<User[], GetUsersParams>({
-      query: () => "/users",
+    getUsers: build.query<GetUsersResponseForTable, GetUsersParams>({
+      query: (params) => ({
+        url: "/users",
+        params,
+      }),
     }),
   }),
 })

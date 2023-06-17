@@ -11,4 +11,10 @@ export type User = {
   firstName: string
   lastName: string
   country: string | null
+  type: "COMPANY" | "ADMIN_REGULATOR" | null
+}
+
+export type GetUsersResponseForTable = {
+  total: number
+  result: User[]
 }

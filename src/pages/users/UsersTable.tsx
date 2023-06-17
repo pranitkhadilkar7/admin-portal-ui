@@ -37,11 +37,12 @@ const defaultColumns = [
       return "No"
     },
   }),
-  columnHelper.accessor((row) => row.id, {
+  columnHelper.accessor((row) => row.type, {
     id: "type",
     header: "Type",
     cell: (info) => {
-      return "Fintech"
+      if (info.getValue() === "COMPANY") return "Fintech"
+      return "Regulator"
     },
   }),
   columnHelper.accessor("createdAt", {
@@ -62,7 +63,7 @@ export function UsersTable({ data }: Props) {
     getCoreRowModel: getCoreRowModel(),
   })
   return (
-    <div className="h-100 overflow-auto">
+    <div className="">
       <table className="w-100">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
